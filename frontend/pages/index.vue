@@ -9,14 +9,13 @@
 </template>
 
 <script setup>
-import { onMounted, ref } from 'vue';
+import { onMounted, computed } from 'vue';
 import { usePageStore } from '@/stores/pages';
 
 const store = usePageStore();
-const pages = ref([]);
+const pages = computed(() => store.pages)
 
 onMounted(async () => {
     await store.getPages();
-    pages.value = store.pages;
 });
 </script>

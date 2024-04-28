@@ -8,17 +8,18 @@
     </div>
 </template>
 <script setup>
-import { ref, onMounted } from 'vue'
+import { onMounted, computed } from 'vue'
 import { useRouter } from 'vue-router'
 import { usePageStore } from '@/stores/pages'
 
-const pageData = ref([])
+// const pageData = ref([])
+const pageData = computed(() => store.pages)
 const router = useRouter()
 const store = usePageStore()
 
 onMounted(async () => {
     const id = router.currentRoute.value.params.id
     await store.getPagesById(id)
-    pageData.value = store.pages
 })
+
 </script>
